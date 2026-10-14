@@ -15,8 +15,8 @@ class MessageAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status', 'created_at', 'updated_at')
-    list_filter = ('status', 'created_at')
-    search_fields = ('title', 'description')
+    list_display = ('title', 'project_type', 'category', 'status', 'created_at', 'updated_at')
+    list_filter = ('status', 'project_type', 'category', 'created_at')
+    search_fields = ('title', 'description', 'project_type', 'category')
     readonly_fields = ('created_at', 'updated_at')
     ordering = ('-created_at',)

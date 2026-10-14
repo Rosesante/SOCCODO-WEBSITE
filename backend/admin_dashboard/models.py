@@ -58,10 +58,13 @@ class Project(models.Model):
     image = models.ImageField(
         upload_to="projects/",
         blank=True,
-        null=True
+        null=True,
+        help_text="Upload an image for this project (e.g., project screenshot or thumbnail)"
     )
     project_url = models.URLField(blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='in_progress')
+    project_type = models.CharField(max_length=100, blank=True)
+    category = models.CharField(max_length=100, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

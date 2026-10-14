@@ -81,6 +81,8 @@ class ProjectSerializer(serializers.ModelSerializer):
             'image',
             'project_url',
             'status',
+            'project_type',
+            'category',
             'created_at',
             'updated_at',
         ]
