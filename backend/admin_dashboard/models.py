@@ -64,7 +64,7 @@ class Project(models.Model):
     project_url = models.URLField(blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='in_progress')
     project_type = models.CharField(max_length=100, blank=True)
-    category = models.CharField(max_length=100, blank=True)
+    category = models.ForeignKey('category.Category', on_delete=models.SET_NULL, null=True, blank=True, help_text="Select a category for this project")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
