@@ -1,2 +1,4 @@
 Django===6.0.6
 Djangorestframework===3.18.3
+django-cors-headers===4.7.0
+Pillow===11.0.0
