@@ -1,8 +1,35 @@
 from rest_framework import serializers
-from .models import Message, Project
+from .models import Message, Project, Reply
+
+
+class ReplySerializer(serializers.ModelSerializer):
+    admin_username = serializers.CharField(source='admin_user.username', read_only=True)
+    
+    class Meta:
+        model = Reply
+        fields = [
+            'id',
+            'message',
+            'admin_user',
+            'admin_username',
+            'content',
+            'via',
+            'sent_at',
+            'success',
+            'error_message',
+        ]
+        read_only_fields = ['id', 'sent_at', 'admin_user', 'admin_username', 'success', 'error_message']
+
+
+class ReplyCreateSerializer(serializers.Serializer):
+    content = serializers.CharField()
+    via = serializers.ChoiceField(choices=['email', 'phone'])
 
 
 class MessageSerializer(serializers.ModelSerializer):
+    replies = ReplySerializer(many=True, read_only=True)
+    replies_count = serializers.IntegerField(source='replies.count', read_only=True)
+    
     class Meta:
         model = Message
         fields = [
@@ -16,8 +43,10 @@ class MessageSerializer(serializers.ModelSerializer):
             'sent_at',
             'read_at',
             'replied_at',
+            'replies',
+            'replies_count',
         ]
-        read_only_fields = ['id', 'sent_at', 'read_at', 'replied_at']
+        read_only_fields = ['id', 'sent_at', 'read_at', 'replied_at', 'replies', 'replies_count']
 
 
 class MessageStatusUpdateSerializer(serializers.ModelSerializer):

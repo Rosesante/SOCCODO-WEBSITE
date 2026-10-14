@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Message(models.Model):
@@ -20,6 +21,27 @@ class Message(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.subject}'
+
+    class Meta:
+        ordering = ['-sent_at']
+
+
+class Reply(models.Model):
+    VIA_CHOICES = [
+        ('email', 'Email'),
+        ('phone', 'Phone/SMS'),
+    ]
+    
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name='replies')
+    admin_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    content = models.TextField()
+    via = models.CharField(max_length=10, choices=VIA_CHOICES)
+    sent_at = models.DateTimeField(auto_now_add=True)
+    success = models.BooleanField(default=False)
+    error_message = models.TextField(blank=True)
+
+    def __str__(self):
+        return f'Reply to {self.message.name} via {self.via}'
 
     class Meta:
         ordering = ['-sent_at']
