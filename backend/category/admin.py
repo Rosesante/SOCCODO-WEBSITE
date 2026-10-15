@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Category
+from .models import Category, GalleryImage
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -8,10 +9,19 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name', 'description')
     readonly_fields = ('created_at', 'updated_at')
     ordering = ('name',)
-    
+
     def changelist_view(self, request, extra_context=None):
         # Add total count to the template context
         total_categories = Category.objects.count()
         extra_context = extra_context or {}
         extra_context['total_categories'] = total_categories
         return super().changelist_view(request, extra_context=extra_context)
+
+
+@admin.register(GalleryImage)
+class GalleryImageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'is_featured', 'order', 'created_at')
+    list_filter = ('category', 'is_featured', 'created_at')
+    search_fields = ('title', 'category__name')
+    readonly_fields = ('created_at', 'updated_at')
+    ordering = ('-created_at',)
