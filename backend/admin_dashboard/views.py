@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
 from .models import Message, Project, Reply
+from django.contrib.auth.models import User
 from .serializer import (
     MessageSerializer,
     ProjectSerializer,
@@ -152,3 +153,17 @@ class ProjectListCreateView(generics.ListCreateAPIView):
 class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+
+class UserStatsView(APIView):
+    def get(self, request):
+        total_users = User.objects.count()
+        active_users = User.objects.filter(is_active=True).count()
+        inactive_users = User.objects.filter(is_active=False).count()
+        staff_users = User.objects.filter(is_staff=True).count()
+        return Response({
+            'total_users': total_users,
+            'active_users': active_users,
+            'inactive_users': inactive_users,
+            'staff_users': staff_users,
+        })

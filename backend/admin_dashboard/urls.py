@@ -8,6 +8,7 @@ from .views import (
     ReplyListView,
     ProjectListCreateView,
     ProjectDetailView,
+    UserStatsView,
 )
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
     path('messages/<int:message_id>/replies/', ReplyListView.as_view(), name='message-replies'),
     path('projects/', ProjectListCreateView.as_view(), name='project-list-create'),
     path('projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
+    path('users/stats/', UserStatsView.as_view(), name='user-stats'),
 ]
