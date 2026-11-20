@@ -1,0 +1,340 @@
+/* ========================================
+   WHO WE ARE PAGE
+======================================== */
+
+.about-page {
+  color: #26352C;
+  background: #ffffff;
+}
+
+.about-container {
+  width: min(1120px, 90%);
+  margin: 0 auto;
+}
+
+.about-hero {
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(120deg, #104D2B, #2E8B4D);
+  color: #ffffff;
+  padding: 75px 5%;
+}
+
+.about-hero-content {
+  width: min(850px, 100%);
+  margin: 0 auto;
+}
+
+.about-label {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #A6CBF5;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.about-hero h1 {
+  max-width: 750px;
+  margin: 0 0 20px;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.08;
+}
+
+.about-hero p {
+  max-width: 690px;
+  margin-bottom: 30px;
+  color: #EEF2FA;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.about-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 23px;
+  border: 2px solid #173A8A;
+  border-radius: 5px;
+  background: #173A8A;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.about-button:hover {
+  background: #2E5799;
+  transform: translateY(-2px);
+}
+
+.about-introduction {
+  padding: 85px 0;
+}
+
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 65px;
+  align-items: start;
+}
+
+.about-intro-heading h2,
+.about-commitment h2 {
+  margin: 0;
+  color: #104D2B;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+.about-intro-text p,
+.about-commitment p {
+  margin: 0 0 18px;
+  color: #647168;
+  line-height: 1.9;
+}
+
+.about-purpose {
+  padding: 85px 0;
+  background: #EAF5EC;
+}
+
+.about-section-heading {
+  max-width: 700px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.about-section-heading h2 {
+  margin: 0 0 15px;
+  color: #104D2B;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.about-section-heading > p {
+  color: #647168;
+  line-height: 1.8;
+}
+
+.about-purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.about-purpose-card {
+  padding: 30px;
+  border: 1px solid #D7E8DA;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(16, 77, 43, 0.05);
+}
+
+.about-card-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 22px;
+  place-items: center;
+  border-radius: 10px;
+  background: #EEF2FA;
+  color: #173A8A;
+  font-weight: 800;
+}
+
+.about-purpose-card h3 {
+  margin: 0 0 14px;
+  color: #104D2B;
+  font-size: 1.35rem;
+}
+
+.about-purpose-card p {
+  margin: 0;
+  color: #647168;
+  line-height: 1.8;
+}
+
+.about-draft-note {
+  margin: 25px 0 0;
+  color: #647168;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.about-commitment {
+  padding: 85px 0;
+}
+
+.about-commitment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+  align-items: start;
+}
+
+.about-text-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #176B3A;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.about-text-link:hover {
+  color: #173A8A;
+  text-decoration: underline;
+}
+
+.about-cta {
+  padding: 75px 0;
+  background: #104D2B;
+  color: #ffffff;
+  text-align: center;
+}
+
+.about-cta h2 {
+  max-width: 750px;
+  margin: 0 auto 15px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.about-cta p {
+  max-width: 650px;
+  margin: 0 auto 28px;
+  color: #EAF5EC;
+  line-height: 1.8;
+}
+
+.about-button-light {
+  border-color: #ffffff;
+  background: #ffffff;
+  color: #104D2B;
+}
+
+.about-button-light:hover {
+  background: #EEF2FA;
+}
+
+/* ========================================
+   TABLET RESPONSIVENESS
+======================================== */
+
+@media (max-width: 800px) {
+  .about-intro-grid,
+  .about-commitment-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .about-purpose-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    min-height: 350px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .about-introduction,
+  .about-purpose,
+  .about-commitment {
+    padding: 60px 0;
+  }
+}
+
+/* ========================================
+   OUR TEAM
+======================================== */
+
+.about-team {
+  padding: 80px 0;
+  background: #EEF2FA;
+}
+
+.about-team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 45px;
+}
+
+.about-team-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #D7E8DA;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(16, 77, 43, 0.06);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(16, 77, 43, 0.12);
+}
+
+.about-team-image {
+  width: 100%;
+  aspect-ratio: 4 / 4.2;
+  overflow: hidden;
+  background: #EAF5EC;
+}
+
+.about-team-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.about-team-card:hover .about-team-image img {
+  transform: scale(1.05);
+}
+
+.about-team-info {
+  padding: 22px 16px;
+  text-align: center;
+}
+
+.about-team-info h3 {
+  margin: 0 0 8px;
+  color: #104D2B;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.about-team-info p {
+  margin: 0;
+  color: #647168;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   RESPONSIVE TEAM LAYOUT
+======================================== */
+
+@media (max-width: 1000px) {
+  .about-team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .about-team {
+    padding: 55px 0;
+  }
+
+  .about-team-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .about-team-image {
+    aspect-ratio: 4 / 3.5;
+  }
+}

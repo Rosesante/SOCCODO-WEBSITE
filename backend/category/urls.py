@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import (
+    AdminGalleryImageDetailView,
+    AdminGalleryImageListCreateView,
     CategoryListCreateView,
     CategoryDetailView,
     CategoryStatsView,
@@ -15,4 +17,14 @@ urlpatterns = [
     path('gallery/', GalleryImageListCreateView.as_view(), name='gallery-image-list-create'),
     path('gallery/<int:pk>/', GalleryImageDetailView.as_view(), name='gallery-image-detail'),
     path('gallery/by-category/', GalleryByCategoryView.as_view(), name='gallery-by-category'),
+    path(
+    'category-admin/gallery/',
+    AdminGalleryImageListCreateView.as_view(),
+    name='category-admin-gallery-list',
+    ),
+    path(
+        'category-admin/gallery/<int:pk>/',
+        AdminGalleryImageDetailView.as_view(),
+        name='category-admin-gallery-detail',
+    ),
 ]

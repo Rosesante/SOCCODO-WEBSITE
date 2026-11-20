@@ -1,8 +1,12 @@
+from django.db.models import Count
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from .models import Category, GalleryImage
 from .serializer import CategorySerializer, GalleryImageSerializer
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
+from api.permissions import IsSuperUser
 
 
 class CategoryListCreateView(generics.ListCreateAPIView):
@@ -29,10 +33,14 @@ class CategoryStatsView(APIView):
         })
 
 
-class GalleryImageListCreateView(generics.ListCreateAPIView):
-    queryset = GalleryImage.objects.all()
+class GalleryImageListCreateView(generics.ListAPIView):
     serializer_class = GalleryImageSerializer
+    permission_classes = [AllowAny]
 
+    def get_queryset(self):
+        return GalleryImage.objects.filter(
+            is_published=True
+        ).select_related('category').order_by('order', '-created_at')
 
 class GalleryImageDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = GalleryImage.objects.all()
@@ -51,3 +59,20 @@ class GalleryByCategoryView(APIView):
                 'images': serializer.data,
             })
         return Response(data)
+
+class AdminGalleryImageListCreateView(generics.ListCreateAPIView):
+    queryset = GalleryImage.objects.select_related(
+        'category'
+    ).all().order_by('order', '-created_at')
+
+    serializer_class = GalleryImageSerializer
+    permission_classes = [IsSuperUser]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
+
+
+class AdminGalleryImageDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = GalleryImage.objects.select_related('category').all()
+
+    serializer_class = GalleryImageSerializer
+    permission_classes = [IsSuperUser]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
