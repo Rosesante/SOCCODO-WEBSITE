@@ -232,7 +232,7 @@ const Navbar = () => {
             onClick={closeMenus}
           >
             <span aria-hidden="true">🔐</span>
-            Admin Login
+            Login
           </Link>
 
         </div>

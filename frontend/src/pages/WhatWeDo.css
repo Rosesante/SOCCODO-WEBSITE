@@ -8,11 +8,13 @@
   margin: 0 auto;
 }
 
+/* HERO */
+
 .what-we-do-hero {
   min-height: 440px;
   background:
     linear-gradient(90deg, rgba(16, 77, 43, 0.93), rgba(23, 58, 138, 0.38)),
-    url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1800&q=85')
+    url('../assets/Ardhi.jpg')
       center 45% / cover no-repeat;
   color: #ffffff;
 }
@@ -68,6 +70,8 @@
   color: #173A8A;
 }
 
+/* INTRODUCTION */
+
 .what-we-do-intro {
   padding: 80px 0;
 }
@@ -93,6 +97,8 @@
   font-size: 1rem;
   line-height: 1.9;
 }
+
+/* FOCUS AREAS */
 
 .what-we-do-focus {
   padding: 85px 0;
@@ -146,6 +152,8 @@
 }
 
 .what-we-do-image-wrapper img {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: 100%;
@@ -157,8 +165,25 @@
   transform: scale(1.045);
 }
 
+.what-we-do-image-placeholder {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #176B3A;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.what-we-do-image-placeholder.is-visible {
+  display: flex;
+}
+
 .what-we-do-number {
   position: absolute;
+  z-index: 2;
   top: 15px;
   left: 15px;
   display: grid;
@@ -219,12 +244,7 @@
   font-size: 1.1rem;
 }
 
-.what-we-do-disclaimer {
-  margin: 28px 0 0;
-  color: #647168;
-  font-size: 0.85rem;
-  line-height: 1.7;
-}
+/* OUR APPROACH */
 
 .what-we-do-approach {
   padding: 85px 0;
@@ -238,7 +258,7 @@
 }
 
 .what-we-do-approach-content > p {
-  margin: 0 0 30px;
+  margin: 20px 0 30px;
   color: #647168;
   line-height: 1.9;
 }
@@ -282,6 +302,8 @@
   font-size: 0.9rem;
   line-height: 1.6;
 }
+
+/* CALL TO ACTION */
 
 .what-we-do-cta {
   padding: 80px 0;
@@ -350,6 +372,8 @@
   color: #104D2B;
 }
 
+/* RESPONSIVE */
+
 @media (max-width: 950px) {
   .what-we-do-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -402,3 +426,4 @@
     padding: 60px 0;
   }
 }
+

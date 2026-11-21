@@ -153,6 +153,8 @@ class Event(models.Model):
     end_at = models.DateTimeField()
     image = models.ImageField(upload_to='events/', blank=True, null=True)
     image_alt = models.CharField(max_length=200, blank=True)
+    video = models.FileField(upload_to='events/videos/',blank=True,null=True)
+    youtube_url = models.URLField(blank=True,null=True,help_text="Paste a YouTube video URL (optional).")
     is_published = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
