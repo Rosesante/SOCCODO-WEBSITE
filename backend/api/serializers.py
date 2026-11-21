@@ -1,3 +1,4 @@
+import os
 from rest_framework import serializers
 from .models import Story, GalleryImage, ContactMessage, Activity, Event
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -116,8 +117,10 @@ class ActivitySerializer(serializers.ModelSerializer):
         return image_url
 
 
+
 class EventSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
+    video_url = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
 
     class Meta:
@@ -133,6 +136,8 @@ class EventSerializer(serializers.ModelSerializer):
             'end_at',
             'image_url',
             'image_alt',
+            'video_url',
+            'youtube_url',
             'status',
         ]
 
@@ -148,6 +153,18 @@ class EventSerializer(serializers.ModelSerializer):
 
         return image_url
 
+    def get_video_url(self, obj):
+        if not obj.video:
+            return None
+
+        request = self.context.get('request')
+        video_url = obj.video.url
+
+        if request:
+            return request.build_absolute_uri(video_url)
+
+        return video_url
+
     def get_status(self, obj):
         now = timezone.now()
 
@@ -157,6 +174,7 @@ class EventSerializer(serializers.ModelSerializer):
             return 'upcoming'
 
         return 'ongoing'
+
 
 class AdminStorySerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
@@ -229,8 +247,11 @@ class AdminGalleryImageSerializer(serializers.ModelSerializer):
 
         return image_url
 
+
+
 class AdminEventSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
+    video_url = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
 
     class Meta:
@@ -247,6 +268,9 @@ class AdminEventSerializer(serializers.ModelSerializer):
             'image',
             'image_url',
             'image_alt',
+            'video',
+            'video_url',
+            'youtube_url',
             'is_published',
             'status',
             'created_at',
@@ -257,6 +281,8 @@ class AdminEventSerializer(serializers.ModelSerializer):
             'slug',
             'status',
             'created_at',
+            'image_url',
+            'video_url',
         ]
 
     def get_image_url(self, obj):
@@ -271,6 +297,18 @@ class AdminEventSerializer(serializers.ModelSerializer):
 
         return image_url
 
+    def get_video_url(self, obj):
+        if not obj.video:
+            return None
+
+        request = self.context.get('request')
+        video_url = obj.video.url
+
+        if request:
+            return request.build_absolute_uri(video_url)
+
+        return video_url
+
     def get_status(self, obj):
         now = timezone.now()
 
@@ -280,6 +318,45 @@ class AdminEventSerializer(serializers.ModelSerializer):
             return 'upcoming'
 
         return 'ongoing'
+
+    def validate_video(self, value):
+        if value:
+            allowed_extensions = ['.mp4', '.webm']
+            extension = os.path.splitext(value.name)[1].lower()
+
+            if extension not in allowed_extensions:
+                raise serializers.ValidationError(
+                    'Only MP4 and WebM video files are allowed.'
+                )
+
+            max_size = 100 * 1024 * 1024  # 100 MB
+
+            if value.size > max_size:
+                raise serializers.ValidationError(
+                    'Video size cannot exceed 100 MB.'
+                )
+
+        return value
+
+    def validate_youtube_url(self, value):
+        if value:
+            allowed_domains = [
+                'youtube.com',
+                'www.youtube.com',
+                'youtu.be',
+                'm.youtube.com',
+            ]
+
+            from urllib.parse import urlparse
+
+            domain = urlparse(value).netloc.lower()
+
+            if domain not in allowed_domains:
+                raise serializers.ValidationError(
+                    'Please provide a valid YouTube URL.'
+                )
+
+        return value
 
     def validate(self, attrs):
         start_at = attrs.get(
@@ -297,7 +374,7 @@ class AdminEventSerializer(serializers.ModelSerializer):
                 'end_at': 'Event ending time cannot be earlier than starting time.'
             })
 
-        return attrs   
+        return attrs
 
 class SuperUserTokenObtainPairSerializer(TokenObtainPairSerializer):
 

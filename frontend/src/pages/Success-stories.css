@@ -1,6 +1,4 @@
-/* ========================================
-   SOCCODO SUCCESS STORIES PAGE
-======================================== */
+/* SOCCODO SUCCESS STORIES PAGE */
 
 .news-page {
   min-height: 100vh;
@@ -14,9 +12,7 @@
   margin: 0 auto;
 }
 
-/* ========================================
-   HERO SECTION
-======================================== */
+/* HERO SECTION */
 
 .news-hero {
   position: relative;
@@ -126,9 +122,7 @@
   font-size: 18px;
 }
 
-/* ========================================
-   INTRODUCTION SECTION
-======================================== */
+/* INTRODUCTION SECTION */
 
 .news-intro {
   padding: 75px 0 45px;
@@ -154,9 +148,7 @@
   line-height: 1.9;
 }
 
-/* ========================================
-   STORIES LISTING
-======================================== */
+/* STORIES LISTING */
 
 .news-listing {
   padding: 45px 0 85px;
@@ -207,9 +199,7 @@
   font-weight: 700;
 }
 
-/* ========================================
-   STORY CARD GRID
-======================================== */
+/* STORY CARD GRID */
 
 .news-grid {
   display: grid;
@@ -361,9 +351,7 @@
   border-radius: 3px;
 }
 
-/* ========================================
-   EDITORIAL NOTE
-======================================== */
+/* EDITORIAL NOTE */
 
 .news-editorial-note {
   margin: 38px 0 0;
@@ -376,9 +364,7 @@
   line-height: 1.9;
 }
 
-/* ========================================
-   CALL TO ACTION
-======================================== */
+/* CALL TO ACTION */
 
 .news-cta {
   padding: 75px 0;
@@ -464,9 +450,7 @@
   color: #ffffff;
 }
 
-/* ========================================
-   ANIMATIONS
-======================================== */
+/* ANIMATIONS */
 
 @keyframes newsFadeUp {
   from {
@@ -480,9 +464,7 @@
   }
 }
 
-/* ========================================
-   TABLET RESPONSIVENESS
-======================================== */
+/* TABLET RESPONSIVENESS */
 
 @media (max-width: 1000px) {
   .news-hero {
@@ -504,9 +486,7 @@
   }
 }
 
-/* ========================================
-   MOBILE RESPONSIVENESS
-======================================== */
+/* MOBILE RESPONSIVENESS */
 
 @media (max-width: 650px) {
   .news-container {
@@ -601,9 +581,7 @@
   }
 }
 
-/* ========================================
-   FULL STORY PREVIEW MODAL
-======================================== */
+/* FULL STORY PREVIEW MODAL */
 
 .news-story-modal {
   position: fixed;

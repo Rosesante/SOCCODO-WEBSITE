@@ -19,6 +19,7 @@ const emptyForm = {
   start_at: '',
   end_at: '',
   image_alt: '',
+  youtube_url: '',
   is_published: false,
 };
 
@@ -48,8 +49,12 @@ const EventsAdmin = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingEvent, setEditingEvent] = useState(null);
   const [form, setForm] = useState(emptyForm);
+
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
+
+  const [videoFile, setVideoFile] = useState(null);
+  const [videoPreview, setVideoPreview] = useState('');
 
   const fetchEvents = async () => {
     setLoading(true);
@@ -92,9 +97,14 @@ const EventsAdmin = () => {
 
   const openCreateForm = () => {
     setEditingEvent(null);
-    setForm(emptyForm);
+    setForm({ ...emptyForm });
+
     setImageFile(null);
     setImagePreview('');
+
+    setVideoFile(null);
+    setVideoPreview('');
+
     setError('');
     setSuccess('');
     setShowForm(true);
@@ -111,11 +121,16 @@ const EventsAdmin = () => {
       start_at: formatDateTime(event.start_at),
       end_at: formatDateTime(event.end_at),
       image_alt: event.image_alt || '',
+      youtube_url: event.youtube_url || '',
       is_published: event.is_published,
     });
 
     setImageFile(null);
     setImagePreview(event.image_url || '');
+
+    setVideoFile(null);
+    setVideoPreview(event.video_url || '');
+
     setError('');
     setSuccess('');
     setShowForm(true);
@@ -139,15 +154,49 @@ const EventsAdmin = () => {
     setImagePreview(URL.createObjectURL(file));
   };
 
+  const handleVideoChange = (e) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    const extension = file.name.toLowerCase().split('.').pop();
+    const allowedExtensions = ['mp4', 'webm'];
+    const maxSize = 100 * 1024 * 1024;
+
+    if (!allowedExtensions.includes(extension)) {
+      setError('Only MP4 and WebM video files are allowed.');
+      e.target.value = '';
+      return;
+    }
+
+    if (file.size > maxSize) {
+      setError('Video size cannot exceed 100 MB.');
+      e.target.value = '';
+      return;
+    }
+
+    setError('');
+    setVideoFile(file);
+    setVideoPreview(URL.createObjectURL(file));
+  };
+
   const closeForm = () => {
     setShowForm(false);
     setEditingEvent(null);
+
     setImageFile(null);
     setImagePreview('');
+
+    setVideoFile(null);
+    setVideoPreview('');
+
+    setForm({ ...emptyForm });
+    setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setSaving(true);
     setError('');
     setSuccess('');
@@ -166,11 +215,15 @@ const EventsAdmin = () => {
       const formData = new FormData();
 
       Object.entries(form).forEach(([key, value]) => {
-        formData.append(key, value);
+        formData.append(key, String(value));
       });
 
       if (imageFile) {
         formData.append('image', imageFile);
+      }
+
+      if (videoFile) {
+        formData.append('video', videoFile);
       }
 
       const endpoint = editingEvent
@@ -182,9 +235,12 @@ const EventsAdmin = () => {
         body: formData,
       });
 
+      const wasEditing = Boolean(editingEvent);
+
       closeForm();
+
       setSuccess(
-        editingEvent
+        wasEditing
           ? 'Event updated successfully.'
           : 'Event created successfully.'
       );
@@ -361,7 +417,9 @@ const EventsAdmin = () => {
 
                       <div>
                         <strong>{event.title}</strong>
-                        <span>{event.location || 'Location not specified'}</span>
+                        <span>
+                          {event.location || 'Location not specified'}
+                        </span>
                       </div>
                     </div>
                   </td>
@@ -555,6 +613,54 @@ const EventsAdmin = () => {
                     maxLength={200}
                     placeholder="Describe the image for accessibility"
                   />
+                </label>
+
+                <div className="events-media-divider events-field-full">
+                  <h3>Event Video</h3>
+                  <p>
+                    Upload a video file or provide a YouTube link. Both are
+                    optional.
+                  </p>
+                </div>
+
+                <label className="events-field events-field-full">
+                  Upload Video
+                  <input
+                    type="file"
+                    accept="video/mp4,video/webm"
+                    onChange={handleVideoChange}
+                  />
+                  <small>
+                    Supported formats: MP4 and WebM. Maximum size: 100 MB.
+                  </small>
+                </label>
+
+                {videoPreview && (
+                  <div className="events-video-preview events-field-full">
+                    <video controls preload="metadata">
+                      <source src={videoPreview} />
+                      Your browser does not support video playback.
+                    </video>
+                    <small>
+                      {videoFile
+                        ? `Selected video: ${videoFile.name}`
+                        : 'Currently uploaded event video'}
+                    </small>
+                  </div>
+                )}
+
+                <label className="events-field events-field-full">
+                  YouTube Video URL
+                  <input
+                    type="url"
+                    name="youtube_url"
+                    value={form.youtube_url}
+                    onChange={handleInputChange}
+                    placeholder="https://www.youtube.com/watch?v=..."
+                  />
+                  <small>
+                    Paste the YouTube link for this event, if available.
+                  </small>
                 </label>
 
                 <label className="events-publish-option events-field-full">

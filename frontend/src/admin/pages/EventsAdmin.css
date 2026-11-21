@@ -448,3 +448,71 @@
     width: 100%;
   }
 }
+
+
+/* Event video section */
+
+.events-media-divider {
+  border-top: 1px solid #e6ece7;
+  padding-top: 18px;
+  margin-top: 5px;
+}
+
+.events-media-divider h3 {
+  color: #173d2a;
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.events-media-divider p {
+  color: #718078;
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Video preview */
+
+.events-video-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.events-video-preview video {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  background: #111;
+  border: 1px solid #e6ece7;
+  border-radius: 7px;
+  object-fit: contain;
+}
+
+.events-video-preview small {
+  color: #718078;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+/* Media fields */
+
+.events-field input[type="file"] {
+  width: 100%;
+  cursor: pointer;
+  background: #f8faf8;
+}
+
+.events-field input[type="url"] {
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .events-video-preview video {
+    max-height: 220px;
+  }
+
+  .events-media-divider {
+    padding-top: 14px;
+  }
+}

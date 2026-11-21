@@ -291,3 +291,58 @@
     padding: 21px;
   }
 }
+
+
+/* EVENT VIDEO */
+
+.event-video,
+.event-youtube-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #111;
+}
+
+.event-video {
+  object-fit: contain;
+}
+
+.event-youtube-video {
+  aspect-ratio: 16 / 9;
+}
+
+/* Keep the event media area consistent */
+
+.event-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+
+/* Ensure images and videos fill the media area */
+
+.event-image-wrapper .event-image,
+.event-image-wrapper .event-video,
+.event-image-wrapper .event-youtube-video {
+  width: 100%;
+  height: 100%;
+}
+
+.event-image-wrapper .event-image {
+  object-fit: cover;
+}
+
+/* Mobile video layout */
+
+@media (max-width: 650px) {
+  .event-image-wrapper {
+    height: 210px;
+  }
+
+  .event-video,
+  .event-youtube-video {
+    width: 100%;
+    height: 100%;
+  }
+}
