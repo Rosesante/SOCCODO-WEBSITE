@@ -29,7 +29,7 @@
 .what-we-do-eyebrow {
   display: inline-block;
   margin-bottom: 15px;
-  color: #C5E32E;
+  color: #4065ec;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 2px;
@@ -54,10 +54,10 @@
   align-items: center;
   gap: 14px;
   padding: 14px 22px;
-  border: 2px solid #C5E32E;
+  border: 2px solid #4065ec;
   border-radius: 5px;
-  background: #C5E32E;
-  color: #104D2B;
+  background: #1335b0;
+  color: white;
   font-weight: 750;
   text-decoration: none;
   transition: transform 0.2s ease, background 0.2s ease;
@@ -343,7 +343,7 @@
   justify-content: center;
   min-height: 48px;
   padding: 12px 22px;
-  border: 2px solid #C5E32E;
+  border: 2px solid #4065ec;
   border-radius: 5px;
   font-weight: 750;
   text-decoration: none;
@@ -351,8 +351,8 @@
 }
 
 .what-we-do-cta-primary {
-  background: #C5E32E;
-  color: #104D2B;
+  background: #1738ae;
+  color: white;
 }
 
 .what-we-do-cta-primary:hover {

@@ -1,7 +1,4 @@
-
-/* =========================================
-   SOCCODO NAVBAR - MAIN HEADER
-========================================= */
+/* SOCCODO NAVBAR - MAIN HEADER */
 
 .site-header {
   width: 100%;
@@ -12,9 +9,7 @@
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* =========================================
-   TOP BRANDING ROW
-========================================= */
+/* TOP BRANDING ROW */
 
 .brand-bar {
   width: 100%;
@@ -55,7 +50,7 @@
 .brand-heading h1 {
   margin: 0;
   color: #14532D;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 800;
   line-height: 1.4;
   letter-spacing: 0.3px;
@@ -69,9 +64,7 @@
   letter-spacing: 3px;
 }
 
-/* =========================================
-   MAIN NAVIGATION ROW
-========================================= */
+/* MAIN NAVIGATION ROW */
 
 .navbar {
   width: 100%;
@@ -92,9 +85,7 @@
   width: 100%;
 }
 
-/* =========================================
-   GENERAL NAVIGATION LINKS
-========================================= */
+/* GENERAL NAVIGATION LINKS */
 
 .nav-link {
   display: inline-flex;
@@ -116,9 +107,7 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* =========================================
-   NAVIGATION DROPDOWN ITEMS
-========================================= */
+/* NAVIGATION DROPDOWN ITEMS */
 
 .nav-item {
   position: relative;
@@ -175,9 +164,7 @@
   transform: rotate(180deg);
 }
 
-/* =========================================
-   DROPDOWN MENU
-========================================= */
+/* DROPDOWN MENU */
 
 .dropdown-menu {
   display: none;
@@ -255,9 +242,7 @@
   border-color: #203890;
 }
 
-/* =========================================
-   CONTACT US BUTTON
-========================================= */
+/* CONTACT US BUTTON */
 
 .nav-contact {
   display: inline-flex;
