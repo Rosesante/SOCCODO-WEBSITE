@@ -15,12 +15,23 @@ class Category(models.Model):
         ordering = ['name']
 
 
+
 class GalleryImage(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='gallery_images')
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        related_name='gallery_images'
+    )
     title = models.CharField(max_length=200)
+    caption = models.TextField(blank=True)
     image = models.ImageField(upload_to='gallery/')
+    alt_text = models.CharField(max_length=255, blank=True)
     is_featured = models.BooleanField(default=False)
-    order = models.PositiveIntegerField(default=0, help_text="Display order within the category")
+    is_published = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(
+        default=0,
+        help_text="Display order within the category"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

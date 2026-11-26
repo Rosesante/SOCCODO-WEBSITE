@@ -1,12 +1,67 @@
+<<<<<<< HEAD
 /* Global reset and base styles */
+=======
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Inter', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: #172033;
+  background: #F7FAF7;
+  font-weight: 400;
+}
+
+>>>>>>> 1f78563f2196f66bdd04770135321f7e5fc3b148
 * {
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 100vh;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+=======
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #F7FAF7;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: #DDF2E2;
+  color: #14532D;
+}
+
+section[id] {
+  scroll-margin-top: 110px;
+>>>>>>> 1f78563f2196f66bdd04770135321f7e5fc3b148
 }

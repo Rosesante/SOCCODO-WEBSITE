@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   box-sizing: border-box;
 }
@@ -166,5 +167,42 @@ p {
   }
   .hero h1 {
     font-size: 2rem;
+=======
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 5%;
+  background: #14532D;
+  color: #EAF7EA;
+  font-size: 13px;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: #A9DDB4;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-footer a:hover {
+  color: #E7EDFF;
+}
+
+@media (max-width: 540px) {
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+>>>>>>> 1f78563f2196f66bdd04770135321f7e5fc3b148
   }
 }
